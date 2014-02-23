@@ -28,6 +28,10 @@ function NodeMaker(ID) {
     }
 
     this.foobar = function() {
-        return "foobar"
+        return "foobar";
+    }
+
+    this.testFunction = function() {
+        return "testFunction";
     }
 }
