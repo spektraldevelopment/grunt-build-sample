@@ -22,8 +22,4 @@ function NodeMaker(ID) {
             element.parentNode.removeChild(element);
         }
     }
-
-    this.newFunction = function() {
-        return "newFunctioneeeeeeee";
-    }
 }

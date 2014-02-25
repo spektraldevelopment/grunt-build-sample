@@ -2,7 +2,15 @@ module.exports = function(grunt) {
 
     // configure the tasks
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+
+        copy: {
+            build: {
+                cwd: "source",
+                src: ["**"],
+                dest: "build",
+                expand: true
+            }
+        },
         clean: {
             build: {
                 src: ["build"]
@@ -11,14 +19,6 @@ module.exports = function(grunt) {
                 src: ["build/*.js", "!build/NodeMaker-min.js"]
                 //You can add multiple ignore files
                 //"build/*.js", "!build/NodeMaker-min.js", "!build/Files.js"
-            }
-        },
-        copy: {
-            build: {
-                cwd: "src",
-                src: ["**"],
-                dest: "build",
-                expand: true
             }
         },
         uglify: {
@@ -32,15 +32,9 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            scripts: {
-                files: "src/*.js",
-                tasks: ["scripts"]
-            },
-            copy: {
-                files:{
-                    files: ["src/**", "!src/*.js"],
-                    tasks: ["copy"]
-                }
+            build: {
+                files: ["source/**"],
+                tasks: ["build"]
             }
         },
         connect: {
@@ -54,7 +48,7 @@ module.exports = function(grunt) {
         }
     });
 
-    //Copies files from src folder to build folder - command: grunt copy
+    //Copies files from source folder to build folder - command: grunt copy
     grunt.loadNpmTasks("grunt-contrib-copy");
 
     //Wipes the build folder clean of files - command: grunt clean
@@ -80,14 +74,14 @@ module.exports = function(grunt) {
     grunt.registerTask(
         "build",
         "Compiles all of the assets and copies the files to the build directory.",
-        ["clean:build", "copy"]
+        ["clean:build", "copy", "scripts"]
     );
 
     //Default - command: grunt default
     grunt.registerTask(
         "default",
         "Watches the project for changes, automatically builds them and runs a server.",
-        ["build", "scripts", "connect", "watch"]
+        ["build", "connect", "watch"]
     );
 };
 
