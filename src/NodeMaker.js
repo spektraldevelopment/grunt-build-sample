@@ -24,14 +24,6 @@ function NodeMaker(ID) {
     }
 
     this.newFunction = function() {
-        return "new";
-    }
-
-    this.foobar = function() {
-        return "foobar";
-    }
-
-    this.testFunction = function() {
-        return "testFunction";
+        return "newFunctioneeeeeeee";
     }
 }

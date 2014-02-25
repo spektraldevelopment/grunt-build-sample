@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                     mangle: true
                 },
                 files: {
-                    'build/NodeMaker-min.js': [ 'build/NodeMaker.js' ]
+                    "build/NodeMaker-min.js": ["build/NodeMaker.js"]
                 }
             }
         },
@@ -69,13 +69,6 @@ module.exports = function(grunt) {
     //Development server - command: grunt connect
     grunt.loadNpmTasks("grunt-contrib-connect");
 
-    //Build
-    grunt.registerTask(
-        "build",
-        "Compiles all of the assets and copies the files to the build directory.",
-        ["clean", "copy", "uglify", "clean:scripts"]
-    );
-
     //Scripts
     grunt.registerTask(
         "scripts",
@@ -83,11 +76,18 @@ module.exports = function(grunt) {
         ["uglify", "clean:scripts"]
     );
 
+    //Build
+    grunt.registerTask(
+        "build",
+        "Compiles all of the assets and copies the files to the build directory.",
+        ["clean:build", "copy"]
+    );
+
     //Default - command: grunt default
     grunt.registerTask(
         "default",
         "Watches the project for changes, automatically builds them and runs a server.",
-        ["build", "connect", "watch"]
+        ["build", "scripts", "connect", "watch"]
     );
 };
 
