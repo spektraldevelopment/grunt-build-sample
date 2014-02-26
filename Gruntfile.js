@@ -35,6 +35,10 @@ module.exports = function(grunt) {
             build: {
                 files: ["source/**"],
                 tasks: ["build"]
+            },
+            specs: {
+                files: ["spec/**"],
+                tasks: ["jasmine"]
             }
         },
         connect: {
@@ -43,6 +47,16 @@ module.exports = function(grunt) {
                     port: 4000,
                     base: "build",
                     hostname: "*"
+                }
+            }
+        },
+        jasmine: {
+            pivotal: {
+                src: "build/NodeMaker-min.js",
+                options: {
+                    specs: "spec/NodeMakerSpec.js",
+                    outfile: "SpecRunner.html",
+                    keepRunner: true
                 }
             }
         }
@@ -63,6 +77,16 @@ module.exports = function(grunt) {
     //Development server - command: grunt connect
     grunt.loadNpmTasks("grunt-contrib-connect");
 
+    //Unit testing framework
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
+
+    //Jasmine
+    grunt.registerTask(
+        "test",
+        "Tests NodeMaker.",
+        ["jasmine"]
+    );
+
     //Scripts
     grunt.registerTask(
         "scripts",
@@ -74,7 +98,7 @@ module.exports = function(grunt) {
     grunt.registerTask(
         "build",
         "Compiles all of the assets and copies the files to the build directory.",
-        ["clean:build", "copy", "scripts"]
+        ["clean:build", "copy", "scripts", "jasmine"]
     );
 
     //Default - command: grunt default
