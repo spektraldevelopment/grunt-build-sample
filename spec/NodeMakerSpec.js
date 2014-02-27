@@ -1,6 +1,6 @@
 describe("NodeMaker: ", function() {
 
-    var nodeMaker, nodeContainer, newDiv;
+    var nodeMaker, nodeContainer, newDiv, hasDiv;
 
     beforeEach(function() {
         nodeContainer = document.createElement("div");
@@ -21,7 +21,22 @@ describe("NodeMaker: ", function() {
         newDiv = nodeMaker.createNode("div", nodeContainer, "newDiv");
         expect(newDiv).toBeDefined(newDiv);
 
-        var hasDiv = nodeMaker.parentContains(nodeContainer, "div");
+        hasDiv = nodeMaker.parentContains(nodeContainer, "div");
         expect(hasDiv).toBeTruthy();
+    });
+
+    it("deletes an element.", function() {
+        //Create div
+        newDiv = nodeMaker.createNode("div", nodeContainer, "newDiv");
+        expect(newDiv).toBeDefined(newDiv);
+
+        //Confirm created div is inside nodeContainer
+        hasDiv = nodeMaker.parentContains(nodeContainer, "div");
+        expect(hasDiv).toBeTruthy();
+
+        nodeMaker.deleteNode(newDiv);
+
+        var divRemoved = nodeMaker.parentContains(nodeContainer, "div");
+        expect(divRemoved).toBeFalsy();
     });
 });
