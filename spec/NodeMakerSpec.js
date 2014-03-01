@@ -37,6 +37,6 @@ describe("NodeMaker: ", function() {
         nodeMaker.deleteNode(newDiv);
 
         var divRemoved = nodeMaker.parentContains(nodeContainer, "div");
-        expect(divRemoved).toBeFalsy();
+        expect(divRemoved).toBeTrue();
     });
 });
