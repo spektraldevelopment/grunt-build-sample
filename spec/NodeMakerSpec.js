@@ -39,4 +39,13 @@ describe("NodeMaker: ", function() {
         var divRemoved = nodeMaker.parentContains(nodeContainer, "div");
         expect(divRemoved).toBeFalsy();
     });
+
+    it("getNodeId returns an id of \"newDiv\".", function() {
+        //Create div
+        newDiv = nodeMaker.createNode("div", nodeContainer, "newDiv");
+
+        //Get id of newDiv
+        var divID = nodeMaker.getNodeId(newDiv);
+        expect(divID).toMatch("newDiv");
+    });
 });

@@ -33,6 +33,10 @@ function NodeMaker(ID) {
         }
     }
 
+    this.getNodeId = function(element) {
+        return element.id;
+    }
+
     function getType(obj) {
 
         var type;
