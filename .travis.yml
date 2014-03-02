@@ -4,8 +4,6 @@ before_install: npm install -g grunt-cli
 install: npm install
 before_script: grunt build
 after_success:
-  - chmod 600 .travis/deploy_key.pem # this key should have push access
-  - ssh-add .travis/deploy_key.pem
   - git add build/*
-  - git commit -a -m "Travis-CI build number: $TRAVIS_JOB_ID"
-  - git push master
+  - git commit -m "Travis CI Build"
+  - git push
