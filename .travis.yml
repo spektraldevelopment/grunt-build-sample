@@ -4,6 +4,4 @@ before_install: npm install -g grunt-cli
 install: npm install
 before_script: grunt build
 after_success:
-  - git add build/*
-  - git commit -m "Travis CI Build"
-  - git push origin master
+  - git remote -v
