@@ -6,6 +6,6 @@ before_script: grunt build
 after_success:
   - git add build/*
   - git config user.email "spektraldevelopment@gmail.com"
-  - git config user.name "spektraldevelopment"
+  - git config user.name "SpektralDevelopment"
   - git commit -m "Travis Build"
   - git push https://github.com/spektraldevelopment/grunt-build-sample.git
