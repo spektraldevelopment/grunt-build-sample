@@ -4,4 +4,8 @@ before_install: npm install -g grunt-cli
 install: npm install
 before_script: grunt build
 after_success:
-  - git remote -v
+  - git add build/*
+  - git config user.email "spektraldevelopment@gmail.com"
+  - git config user.name "spektraldevelopment"
+  - git commit -m "Travis Build"
+  - git push https://github.com/spektraldevelopment/grunt-build-sample.git
