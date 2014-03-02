@@ -6,4 +6,4 @@ before_script: grunt build
 after_success:
   - git add build/*
   - git commit -m "Travis CI Build"
-  - git push
+  - git push origin master
