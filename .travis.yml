@@ -4,8 +4,7 @@ before_install: npm install -g grunt-cli
 install: npm install
 before_script: grunt build
 after_success:
-  - git add build/*
-  - git config user.email "spektraldevelopment@gmail.com"
-  - git config user.name "SpektralDevelopment"
-  - git commit -m "Travis Build"
-  - git push https://github.com/spektraldevelopment/grunt-build-sample.git
+   - chmod 600 .travis/deploy_key.pem # this key should have push access
+    - ssh-add .travis/deploy_key.pem
+    - git remote add deploy https://github.com/spektraldevelopment/grunt-build-sample.git
+    - git push deploy
